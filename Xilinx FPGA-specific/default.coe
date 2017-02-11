@@ -1,0 +1,16 @@
+//For Xilinx FPGAs.
+memory_initialization_radix = 16;
+memory_initialization_vector = 00000013,
+00000013,
+00000013,
+00000013,
+00000013,
+00000013,
+00000013,
+00000013,
+00400513,
+40402583,
+00B50633,
+00C60633,
+40C02023,
+6F;
