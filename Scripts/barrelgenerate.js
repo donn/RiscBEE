@@ -1,6 +1,7 @@
 //Generates a barrel shifter. Because let's be honest, Verilog generate statements are the devil.
 
-for (var i = 0; i < 7; i++) {
+for (var i = 0; i < 7; i++)
+{
     for (var j = 0; j < 32; j++)
     {
         if (i === 0) {
