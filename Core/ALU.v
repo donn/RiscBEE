@@ -2,6 +2,7 @@
 // author: @skyus
 
 `timescale 1ns/1ns
+`include "Mux.v"
 
 module ALU(A, B, switch, operation, O, Z, N, C, V); //Z: Zero flag. N: Negative flag. C: Carry. V: Overflow. 
     input [2:0] operation;
