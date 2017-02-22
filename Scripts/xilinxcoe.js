@@ -1,8 +1,8 @@
 //Creates COE files for use with Xilinx ISE.
 //Just paste your Oak.js-generated machine code in x and you're good to go.
 
-var x = "37 F4 FF FF 13 64 F4 FF 23 00 80 00 23 10 80 00 23 20 80 00 6F 00 00 00";
-
+var x = "93 62 00 FF 03 A4 02 00 83 A4 42 00 33 09 94 00 23 A4 22 01 37 F3 FF FF 13 63 F3 FF 23 A6 62 00 93 08 A0 00";
+ 
 var y = x.split(" ").reverse();
 
 var z = ""
