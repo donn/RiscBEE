@@ -11,18 +11,18 @@ var b = [];
 
 for (var i in y)
 {
-  if (a === 0)
-  {
-    z += `rom[${(y.length / 4) - 1 - b.length}] = 32'h`;
-  }
-  z += y[i];
-  a++;
-  if (a === 4)
-  {
-    b.push(z + ";");
-    z = "";
-    a = 0;
-  }
+    if (a === 0)
+    {
+        z += `rom[${(y.length / 4) - 1 - b.length}] = 32'h`;
+    }
+    z += y[i];
+    a++;
+    if (a === 4)
+    {
+        b.push(z + ";");
+        z = "";
+        a = 0;
+    }
   
 }
 
