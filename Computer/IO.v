@@ -1,8 +1,6 @@
 // file: IO.v
 // author: @karimio
 
-`include "IO.v"
-
 `timescale 1ns / 1ns
 
 module DisplayNumber(num, segs);

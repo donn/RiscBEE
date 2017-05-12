@@ -2,7 +2,6 @@
 // author: @skyus
 // Testbench for CPU
 
-`include "Core/CPU.v"
 `timescale 1ns/1ns
 
 module CPU_tb;
@@ -11,8 +10,7 @@ module CPU_tb;
 	reg clk;
 	reg rst;
 	reg [31: 0] memout;
-	reg [31: 0] romout;
-
+	wire [31: 0] romout;
 
 	//Outputs
 	wire [31: 0] memin;
@@ -40,19 +38,37 @@ module CPU_tb;
     reg [31:0] rom [15:0];
     
     initial begin
-    //13 05 F0 40 23 20 A0 80 6F 00 00 00 
-        rom[0] = 32'hfee69ee3;
+    /*
+        lw s0, -4(sp)
+        addi sp, sp, -4
+        slli t0, s0, 16
+        sw t0, -4(sp)
+        addi sp, sp, -4
+        lui s1, 0xFFFF0
+        and t0, s0, s1
+        sw t0, -4(sp)
+        addi sp, sp, -4
+        here: jal x0, here
+    */
+        rom[0] = 32'hFFC12403;
+        rom[1] = 32'hFFC10113;
+        rom[2] = 32'h01041293;
+        rom[3] = 32'hFE512E23;
+        rom[4] = 32'hFFC10113;
+        rom[5] = 32'hFFFF04B7;
+        rom[6] = 32'h009472B3;
+        rom[7] = 32'hFE512E23;
+        rom[8] = 32'hFFC10113;
+        rom[9] = 32'h0000006F;
     end
     
-    always #1
-    romout = rom[romaddr[5:2]];
+    assign romout = rom[romaddr[5:2]];
 
 	initial begin
 	//Inputs initialization
 		clk = 0;
 		rst = 1;
-		memout = 0;
-		romout = 0;
+		memout = 32'hABCD4321;
 
 
 	//Wait for the reset

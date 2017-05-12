@@ -1,10 +1,6 @@
 // file: Processor.v
 // author: @karimio
 
-`include "Core/Decoder.v"
-`include "Core/DataPath.v"
-`include "Core/ProgramCounter.v"
-
 `timescale 1ns/1ns
 
 module CPU(

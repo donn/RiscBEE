@@ -1,9 +1,6 @@
 // file: Mux.v
 // author: @karimio
 
-`ifndef _rb_mux
-`define _rb_mux
-
 `timescale 1ns/1ns
 
 module Mux2(A, B, sel, O);
@@ -37,5 +34,3 @@ module Mux8(A, B, C, D, E, F, G, H, sel, O);
     Mux4 #(width) m2(E, F, G, H, sel[1:0], w2);
     Mux2 #(width) m3(w1, w2, sel[2], O);
 endmodule
-
-`endif

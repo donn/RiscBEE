@@ -1,19 +1,44 @@
-//DISCLAIMER: THIS BARREL SHIFTER IS BROKEN.
+// file: BarrelShifter.v
+// author: @karimio
+
 `timescale 1ns/1ns
 
 module BarrelShifter(A, O, shamt, arith, right);
-    input [31:0] A;
-    input [4:0] shamt;
+    parameter width = 32;
+    parameter bitLength = 5;
+    
+    input [width-1:0] A;
+    input [bitLength-1:0] shamt;
     input arith, right;
-    output [31:0] O;
+    output [width-1:0] O;
     
     wire lastbit;
-    assign lastbit = arith ? (right? A[0]: A[31]) : 1'b0;
+    assign lastbit = (arith&&right)? A[width-1] : 1'b0;
     
     genvar i, j;
-    wire [31:0] C [5:0];
-
-    //Needs fixing.
+    wire [width-1:0] C [bitLength:0];
     
+    generate
+        for(i = 0; i < width; i=i+1) begin : reversal1
+            Mux2 #(1) rm(.A(A[i]), .B(A[width-1-i]), .sel(right), .O(C[0][i]));
+        end
+    endgenerate
+
+    generate
+        for(i = 1; i <= bitLength; i=i+1) begin : barrelRow
+            for(j = 0; j < width; j=j+1) begin : barrelBit
+                if (j-(2**(i-1)) < 0)
+                    Mux2 #(1) rm(.A(C[i-1][j]), .B(lastbit), .sel(shamt[i-1]), .O(C[i][j]));
+                else
+                    Mux2 #(1) rm(.A(C[i-1][j]), .B(C[i-1][j-(2**(i-1))]), .sel(shamt[i-1]), .O(C[i][j]));
+            end
+        end
+    endgenerate
+    
+    generate
+        for(i = 0; i < width; i=i+1) begin : reversal2
+            Mux2 #(1) rm(.A(C[bitLength][i]), .B(C[bitLength][width-1-i]), .sel(right), .O(O[i]));
+        end
+    endgenerate
     
 endmodule 

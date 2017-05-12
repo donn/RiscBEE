@@ -1,8 +1,6 @@
 // file: RegisterFile.v
 // author: @skyus
 
-`include "Core/BarrelShifter.v"
-
 `timescale 1ns/1ns
 
 module RegisterFile(clk, rst, Aaddress, Baddress, Daddress, Adata, Bdata, Ddata, write);
@@ -16,7 +14,7 @@ module RegisterFile(clk, rst, Aaddress, Baddress, Daddress, Adata, Bdata, Ddata,
     assign Adata = bank[Aaddress];
     assign Bdata = bank[Baddress];
 
-    always @(posedge clk or posedge rst) begin
+    always @(posedge clk) begin
         if (rst) begin
             bank[0] <= 32'b0;
             bank[1] <= 32'b0;

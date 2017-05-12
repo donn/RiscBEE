@@ -1,9 +1,6 @@
 // file: Computer.v
 // author: @karimio
 
-`include "Computer/CleanInput.v"
-`include "Computer/IO.v"
-
 `timescale 1ns / 1ns
 
 module Computer(clk, rst, segs, pos, switchIn);

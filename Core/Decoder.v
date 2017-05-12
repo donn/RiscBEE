@@ -1,8 +1,6 @@
 // file: Decoder.v
 // author: @skyus
 
-`include "Core/Mux.v"
-
 `timescale 1ns/1ns
 
 module Decoder(
@@ -63,17 +61,17 @@ assign rs2 = word[24:20];
 
 assign imm_uj = {{11{word[31]}}, word[31], word[19:12], word[20], word[30:21], 1'b0};
 assign imm_u = {word[31:12], 12'b0};
-assign imm_i = {20'b0, word[31:20]};
+assign imm_i = {{20{word[31]}}, word[31:20]};
 assign imm_s = {{20{word[31]}}, word[31:25], word[11:7]};
 assign imm_sb = {{19{word[31]}}, word[31], word[7], word[30:25], word[11:8], 1'b0};
 
 assign signed_comp = (V)? ~N: N;
-assign imm_sext = (arith & (funct3 === 3'b011)); //| ~((word[6] & (funct3[2:1] === 2'b11)) sb is confusing my dude
+assign imm_sext = (arith & (funct3 === 3'b011));
 
 Mux8 #(1) mux8(.A(Z), .B(~Z), .C(1'b0), .D(1'b0), .E(signed_comp), .F(~signed_comp), .G(N), .H(~N), .sel(funct3), .O(condition));
 
 assign load_pc = (word[6] & condition) | (word[6] & word[2]);
-assign alu_op = arith? { ((r | (funct3 === 101)) & word[30]), funct3}: {~load_store, 3'b000};
+assign alu_op = arith? { ((r | (funct3 === 3'b101)) & word[30]), funct3}: {~load_store, 3'b000};
 
 Mux4 #(4) mux4(.A(4'b0001), .B(4'b0011), .C(4'b1111), .D(4'b0000), .sel(funct3[1:0]), .O(iobytes));
 

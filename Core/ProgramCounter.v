@@ -10,10 +10,10 @@ module ProgramCounter(clk, rst, next_addr, addr);
 	output reg [31:0] addr;
 	
 	
-	always @ (posedge clk or posedge rst) begin
+	always @ (posedge clk) begin
 		if (rst)
 			addr <= 32'b0;
-		else if (clk)
+		else
 			addr <= addr + next_addr;
 	end
 endmodule

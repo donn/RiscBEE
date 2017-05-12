@@ -1,11 +1,6 @@
 // file: DataPath.v
 // author: @skyus
 
-`include "Core/ALU.v"
-`include "Core/Extender.v"
-`include "Core/Mux.v"
-`include "Core/RegisterFile.v"
-
 `timescale 1ns/1ns
 
 //Data then control signals then outputs
@@ -53,11 +48,8 @@ module DataPath(
     output [31:0] o, memin, next_addr;
     
     wire [31:0] aData, bData, bAlu, memextb, memexth, memext, regwrite, ujext, iext, sext, sbext;
-    wire [31:0] imm_i_ext;
-    
-    Extender #(21) ext1(.isSigned(imm_sext), .in(imm_i), .out(imm_i_ext));
  
-    assign bAlu = ({32{r | sb}} & bData) | ({32{i}} & imm_i_ext) | ({32{s}} & imm_s);// | ({32{sb}} & imm_sb);
+    assign bAlu = ({32{r | sb}} & bData) | ({32{i}} & imm_i) | ({32{s}} & imm_s);// | ({32{sb}} & imm_sb);
     
     ALU thing(.A(aData), .B(bAlu), .switch(alu_op[3]), .operation(alu_op[2:0]), .O(o), .Z(Z), .N(N), .C(C), .V(V));
     
