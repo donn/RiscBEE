@@ -18,7 +18,7 @@ module ALU(A, B, switch, operation, O, Z, N, C, V); //Z: Zero flag. N: Negative 
     assign {C, V} = (operation == 3'b000)? ({c, v}): (2'b00);
     // assign sll = A << B[4:0];
     assign slt = ($signed(A) < ($signed(B))? 32'b1: 32'b0);
-    assign sltu = (A < B)? 32'b1: 32'b0;
+    assign sltu = ({0, A} < {0, B})? 32'b1: 32'b0;
     assign lxor = A ^ B;
     // assign srl = switch? ($signed(A) >> $signed(B[4:0])): A >> B[4:0];
     assign lor = A | B;
