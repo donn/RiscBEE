@@ -48,7 +48,6 @@ module RegisterFile(clk, rst, Aaddress, Baddress, Daddress, Adata, Bdata, Ddata,
             bank[29] <= 32'b0;
             bank[30] <= 32'b0;
             bank[31] <= 32'b0;
-            
         end
         else begin
             if (write) begin
