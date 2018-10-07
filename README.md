@@ -11,6 +11,8 @@ The Core and Computer are platform-agnostic, but some submodules and thus the fi
 
 RiscBEE is a sister project of [Oak.js](https://github.com/skyus/Oak.js).
 
+**Note: The Chisel implementation is unfinished. The Phi implementation is syntactically valid but not semantically verified.**
+
 # Usage
 You can generate machine code with [Oak.js](https://skyus.github.io/Oak.js). To simulate, run CPU_tb.v. 
 
