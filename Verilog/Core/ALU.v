@@ -16,18 +16,18 @@ module ALU(A, B, switch, operation, O, Z, N, C, V); //Z: Zero flag. N: Negative 
     assign {c, add} = switch? A - B: A + B;
     assign v = c ^ (add[31] ^ A[31] ^ B[31]);
     assign {C, V} = (operation == 3'b000)? ({c, v}): (2'b00);
-    // assign sll = A << B[4:0];
+    assign sll = A << B[4:0];
     assign slt = ($signed(A) < ($signed(B))? 32'b1: 32'b0);
     assign sltu = ({0, A} < {0, B})? 32'b1: 32'b0;
     assign lxor = A ^ B;
-    // assign srl = switch? ($signed(A) >> $signed(B[4:0])): A >> B[4:0];
+    assign srl = switch? ($signed(A) >>> B[4:0]): A >> B[4:0];
     assign lor = A | B;
     assign land = A & B;
     
     
-    BarrelShifter a(.A(A), .O(shift), .shamt(B[4:0]), .arith(switch), .right(~operation[2]));
-    assign sll = shift;
-    assign srl = shift;
+    //BarrelShifter a(.A(A), .O(shift), .shamt(B[4:0]), .arith(switch), .right(~operation[2]));
+    //assign sll = shift;
+    //assign srl = shift;
     
     Mux8 mux8(.A(add), .B(sll), .C(slt), .D(sltu), .E(lxor), .F(srl), .G(lor), .H(land), .sel(operation), .O(O));
     
