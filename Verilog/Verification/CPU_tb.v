@@ -1,5 +1,5 @@
 // file: CPU_tb.v
-// author: @skyus
+// author: @donn
 // Testbench for CPU
 
 `timescale 1ns/1ns

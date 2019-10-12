@@ -1,5 +1,5 @@
 // file: Decoder.v
-// author: @skyus
+// author: @donn
 
 `timescale 1ns/1ns
 
