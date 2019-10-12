@@ -23,12 +23,12 @@ You might need to manage includes and add dump statements to CPU_tb.v.
 
 ## FPGA Toolchains
 ### Xilinx ISE
-Pool all files in **Computer**, **Core** and **Xilinx FPGA-specific**.
+Pool all files in **Core** and **Xilinx**.
 
-You will want to create a ucf file, as well.
+You will want to create a `.ucf` file, as well. I think we lost ours.
 
 ### Other
-You want to use **Computer**, **Core** and ***modify*** Xilinx FPGA-specific code to code that interfaces with your FPGA's memory resources and I/O.
+You want to use **Core**,and ***modify*** Xilinx FPGA-specific code to code that interfaces with your FPGA's memory resources and I/O.
 
 # License
 Mozilla Public License 2.0. Check 'LICENSE'.
