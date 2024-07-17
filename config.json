@@ -1,0 +1,6 @@
+{
+    "DESIGN_NAME": "CPU",
+    "VERILOG_FILES": "dir::Verilog/Core/*.v",
+    "CLOCK_PORT": "clk",
+    "CLOCK_PERIOD": 25
+}

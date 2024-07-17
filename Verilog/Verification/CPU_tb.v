@@ -65,6 +65,8 @@ module CPU_tb;
     assign romout = rom[romaddr[5:2]];
 
 	initial begin
+		$dumpvars(0, CPU_tb);
+		$dumpfile("out.vcd");
 	//Inputs initialization
 		clk = 0;
 		rst = 1;
@@ -74,6 +76,9 @@ module CPU_tb;
 	//Wait for the reset
 		#101;
 		rst = 0;
+		
+		#10000;
+		$finish;
 	end
 
 endmodule

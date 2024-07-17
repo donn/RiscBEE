@@ -15,11 +15,10 @@ RiscBEE is a sister project of [Oak.js](https://github.com/donn/Oak.js).
 You can generate machine code with [Oak.js](https://oak.js.org/). To simulate, run CPU_tb.v. 
 
 ## Simulation
-### Cloud V
-[Cloud V](https://cloudv.io/) is a cloud-based digital design platform by our computer science and engineering department. To use it, create an account and clone https://cloudv.io/donn/RiscBEE.
-
-### IcarusVerilog and other simulators
-You might need to manage includes and add dump statements to CPU_tb.v.
+```sh
+iverilog Core/*.v Verification/CPU_tb.v
+./a.out
+```
 
 ## FPGA Toolchains
 ### Xilinx ISE
